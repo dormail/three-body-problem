@@ -28,9 +28,9 @@ void ThreeBodyProblem::EulerIntegration() {
     r2 += h * p2 / m2;
     r3 += h * p3 / m3;
 
-    p1 += h * (F(r1 - r2) + F(r1 - r3));
-    p2 += h * (F(r2 - r1) + F(r2 - r3));
-    p3 += h * (F(r3 - r1) + F(r3 - r2));
+    p1 += h * (F(r1 - r2, m1, m2) + F(r1 - r3, m1 , m3));
+    p2 += h * (F(r2 - r1, m2, m1) + F(r2 - r3, m2, m3));
+    p3 += h * (F(r3 - r1, m3, m1) + F(r3 - r2, m3, m2));
 
     t += h;
 }
