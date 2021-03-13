@@ -7,12 +7,14 @@
 
 #include <gtkmm.h>
 #include <gtkmm-3.0/gtkmm/window.h>
+#include "drawer.h"
 
 
 class MyWindow : public Gtk::Window {
 protected:
+    drawer dr;
     Gtk::HBox HBoxMaster;
-    Gtk::VBox VBoxSettings;
+    Gtk::Frame MainFrame;
 
 public:
     MyWindow(unsigned int sizeX, unsigned int sizeY);
