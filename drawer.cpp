@@ -8,10 +8,13 @@
 #define MICROSECOND 0.000001
 
 
-drawer::drawer() : system()
+drawer::drawer() : system(),
+    CenterCOM(true),
+    h(0.001),
+    zoom(200.)
 {
     lastTime = std::chrono::system_clock::now();
-    system.h = MICROSECOND;
+    system.h = h;
     system.t = 0;
 }
 
@@ -27,7 +30,8 @@ bool drawer::reCalculate()
     while(dT > 0)
     {
         system.EulerIntegration();
-        dT -= MICROSECOND;
+        if(CenterCOM) system.CenterCOM();
+        dT -= h;
     }
 
     queue_draw();
@@ -53,13 +57,21 @@ bool drawer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     cr->set_line_width(10.0);
 
     // draw red lines out from the center of the window
-    cr->set_source_rgb(0.8, 0.0, 0.0);
-    cr->move_to(0, 0);
-    cr->line_to(xc, yc);
-    cr->line_to(0, height);
-    cr->move_to(xc, yc);
-    cr->line_to(width, yc);
+    cr->set_source_rgb(0.8, 0.8, 0.);
+    cr->arc(xc + zoom * system.r1[0], yc + zoom * system.r1[1], system.m1, 0, 2 * M_PI);
     cr->stroke();
+
+    cr->set_source_rgb(0.0, 0.3, 0.0);
+    cr->arc(xc + zoom * system.r2[0], yc + zoom * system.r2[1], system.m2, 0, 2 * M_PI);
+    cr->stroke();
+
+    cr->save();
+    cr->set_source_rgb(0.0, 0.0, 0.5);
+    cr->arc(xc + zoom * system.r3[0], yc + zoom * system.r3[1], system.m3, 0, 2 * M_PI);
+    cr->fill_preserve();
+    cr->stroke();
+
+
 
     return true;
 }

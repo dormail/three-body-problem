@@ -20,7 +20,7 @@ ThreeBodyProblem::ThreeBodyProblem() : m1(1.), m2(1.), m3(1.), h(0.001), t(0)
 
     p1 = Eigen::Vector3d(0,0,0);
     p2 = Eigen::Vector3d(0,1,0);
-    p3 = Eigen::Vector3d(1,0,0);
+    p3 = Eigen::Vector3d(-1,0,0);
 }
 
 void ThreeBodyProblem::EulerIntegration() {
@@ -33,4 +33,20 @@ void ThreeBodyProblem::EulerIntegration() {
     p3 += h * (F(r3 - r1, m3, m1) + F(r3 - r2, m3, m2));
 
     t += h;
+}
+
+Eigen::Vector3d ThreeBodyProblem::CenterOfMass()
+{
+    Eigen::Vector3d R;
+    R = m1 * r1 + m2 * r2 + m3 * r3;
+    R /= (m1 + m2 + m3);
+    return R;
+}
+
+void ThreeBodyProblem::CenterCOM()
+{
+    Eigen::Vector3d R = CenterOfMass();
+    r1 -= R;
+    r2 -= R;
+    r3 -= R;
 }

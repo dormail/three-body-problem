@@ -22,6 +22,9 @@ public:
 
     void EulerIntegration(); // does a single euler integration
     void RungeKuttaIntegration(); // does a single runge kutta integration
+
+    Eigen::Vector3d CenterOfMass();
+    void CenterCOM(); // puts the center of mass to (0,0,0)
 };
 
 

@@ -16,6 +16,13 @@ protected:
 
     bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
 
+    /* attributes for numerical simulation */
+    double h; // time interval for each integration step in seconds
+
+    /* attributes for visuals */
+    double zoom;
+    bool CenterCOM;
+
 public:
     drawer();
     virtual ~drawer();
