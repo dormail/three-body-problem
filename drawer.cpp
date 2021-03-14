@@ -4,7 +4,6 @@
 
 #include "drawer.h"
 #include "ThreeBodyProblem.h"
-//#include <chrono>
 
 #define MICROSECOND 0.000001
 
@@ -32,6 +31,8 @@ bool drawer::reCalculate()
     }
 
     queue_draw();
+
+    lastTime = std::chrono::system_clock::now();
 
     return true;
 }

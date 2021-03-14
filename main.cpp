@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
 
     /* construct new window */
     MyWindow win(800, 600);
-    //win.start(17);
+    win.start(17);
 
     return app->run(win);
 }
