@@ -12,3 +12,6 @@ main: main.cpp
 		-std=c++11 \
 		$$(pkg-config gtkmm-3.0 --cflags --libs) -lpthread \
 		-o main
+
+clean:
+	rm -rf main
