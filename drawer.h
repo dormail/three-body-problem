@@ -5,7 +5,7 @@
 #ifndef THREE_BODY_PROBLEM_DRAWER_H
 #define THREE_BODY_PROBLEM_DRAWER_H
 
-#include <gtkmm/drawingarea.h>
+#include <gtkmm.h>
 #include "ThreeBodyProblem.h"
 #include <chrono>
 
@@ -18,6 +18,8 @@ protected:
 public:
     drawer();
     virtual ~drawer();
+
+    bool reCalculate();
 };
 
 

@@ -16,9 +16,12 @@ protected:
     Gtk::HBox HBoxMaster;
     Gtk::Frame MainFrame;
 
+    sigc::connection timeout;
 public:
     MyWindow(unsigned int sizeX, unsigned int sizeY);
-    ~MyWindow() {};
+    ~MyWindow();
+
+    void start(unsigned int const MiliSecondsDT); // function starting the simulation
 };
 
 

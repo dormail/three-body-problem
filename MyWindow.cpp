@@ -20,3 +20,12 @@ MyWindow::MyWindow(unsigned int sizeX, unsigned int sizeY)
 
 	show_all_children();
 }
+
+MyWindow::~MyWindow() {
+    timeout.disconnect();
+}
+
+void MyWindow::start(unsigned int const MiliSecondsDT)
+{
+    timeout = Glib::signal_timeout().connect( sigc::mem_fun(dr, &drawer::reCalculate), MiliSecondsDT);
+}
