@@ -9,17 +9,19 @@
 #include "ThreeBodyProblem.h"
 #include <chrono>
 
-
 class drawer : public Gtk::DrawingArea {
 protected:
     ThreeBodyProblem system;
     std::chrono::system_clock::time_point lastTime;
+
+    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
 
 public:
     drawer();
     virtual ~drawer();
 
     bool reCalculate();
+
 };
 
 
